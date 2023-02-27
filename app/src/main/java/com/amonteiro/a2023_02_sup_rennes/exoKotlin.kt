@@ -29,12 +29,14 @@ fun main() {
         println("V3 est null ou blanc")
     }
 
-    val res = min(1,2,3)
+    val res = boulangerie(nbBag = 2)
     println("res= $res")
 }
 
-fun pair(c:Int) = c%2 == 0
-fun myPrint(text:String) = println("#$text#")
+fun boulangerie(nbC: Int = 0, nbBag: Int = 0, nbSand: Int = 0) = nbC * PRICE_CROISSANT + nbBag * PRICE_BAGUETTE + nbSand * PRICE_SANDWICH
+
+fun pair(c: Int) = c % 2 == 0
+fun myPrint(text: String) = println("#$text#")
 
 fun min(a: Int, b: Int, c: Int) = if (a < b && a < c) a else if (b < a && b < c) b else c
 
