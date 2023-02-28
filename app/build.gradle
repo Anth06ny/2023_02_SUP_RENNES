@@ -44,4 +44,5 @@ dependencies {
 
     //Librairie pour faire des requetes web
     implementation 'com.squareup.okhttp3:okhttp:+'
+    implementation 'com.google.code.gson:gson:2.3'
 }

@@ -22,6 +22,27 @@ fun main() {
 
 }
 
+/* -------------------------------- */
+// API Pokemon
+/* -------------------------------- */
+
+data class PokemonBean(
+    val name: String,
+    val type: List<String>
+)
+
+/* -------------------------------- */
+// API WEATHER
+/* -------------------------------- */
+data class WeatherBean(var main:TempBean, var wind: WindBean, var name:String)
+
+data class WindBean(var speed:Double)
+data class TempBean(var temp:Double)
+
+
+/* -------------------------------- */
+// EXO
+/* -------------------------------- */
 class PlaneBean(name: String) {
     var id = name.hashCode()
         private set
