@@ -13,13 +13,18 @@ fun main() {
 //    student.note++
 //    println("${student.name} : ${student.note}" )
 
-    val plane = PlaneBean("Toto")
-    println("${plane.name} : ${plane.id}")
-    plane.name = "bob"
-    println("${plane.name} : ${plane.id}")
+    //    val plane = PlaneBean("Toto")
+    //    println("${plane.name} : ${plane.id}")
+    //    plane.name = "bob"
+    //    println("${plane.name} : ${plane.id}")
+    //
+    //    val plane2 = PlaneBean("Toto")
 
-    val plane2 = PlaneBean("Toto")
-
+    val randomName = RandomName()
+    randomName.add("bobby")
+    repeat(10) {
+        println(randomName.nextDiff() + " ")
+    }
 }
 
 /* -------------------------------- */
@@ -34,24 +39,49 @@ data class PokemonBean(
 /* -------------------------------- */
 // API WEATHER
 /* -------------------------------- */
-data class WeatherBean(var main:TempBean, var wind: WindBean, var name:String)
+data class WeatherBean(var main: TempBean, var wind: WindBean, var name: String)
 
-data class WindBean(var speed:Double)
-data class TempBean(var temp:Double)
+data class WindBean(var speed: Double)
+data class TempBean(var temp: Double)
 
 
 /* -------------------------------- */
 // EXO
 /* -------------------------------- */
+class RandomName {
+    private val list = arrayListOf("Toto", "Tata", "Titi")
+    private var oldValue = ""
+
+    fun add(name: String?) {
+        if (!name.isNullOrBlank() && name !in list) {
+            //list.add(name)
+            list += name
+        }
+    }
+
+    fun next() = list.random()
+
+    fun nextDiff(): String {
+        var sendValue = next()
+        while(sendValue == oldValue){
+            sendValue = next()
+        }
+        oldValue = sendValue
+        return sendValue
+    }
+
+    fun next2() = Pair(nextDiff(), nextDiff())
+}
+
 class PlaneBean(name: String) {
     var id = name.hashCode()
         private set
 
     var name = name
-    set(value) {
-        field = value
-        id = name.hashCode()
-    }
+        set(value) {
+            field = value
+            id = name.hashCode()
+        }
 
 }
 
