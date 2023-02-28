@@ -31,6 +31,8 @@ fun main() {
 
     val res = boulangerie(nbBag = 2)
     println("res= $res")
+
+
 }
 
 fun boulangerie(nbC: Int = 0, nbBag: Int = 0, nbSand: Int = 0) = nbC * PRICE_CROISSANT + nbBag * PRICE_BAGUETTE + nbSand * PRICE_SANDWICH
