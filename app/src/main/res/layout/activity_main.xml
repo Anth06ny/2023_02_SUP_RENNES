@@ -8,17 +8,20 @@
     tools:context=".MainActivity">
 
     <RadioGroup
+        android:id="@+id/rg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <RadioButton
+            android:id="@+id/rbLike"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="J'aime"/>
 
         <RadioButton
+            android:id="@+id/rbDislike"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -42,10 +45,11 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="Saisir nom ici"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"/>
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -62,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="Annuler" />
+            android:text="Annuler"/>
 
         <Button
             android:id="@+id/btValidate"
@@ -70,6 +74,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="Valider" />
+            android:text="Valider"/>
     </LinearLayout>
 </LinearLayout>
