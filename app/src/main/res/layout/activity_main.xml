@@ -13,18 +13,16 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/radioButton2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/like" />
+            android:text="J'aime"/>
 
         <RadioButton
-            android:id="@+id/radioButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/dislike" />
+            android:text="Je n'aime pas"/>
     </RadioGroup>
 
     <LinearLayout
@@ -35,25 +33,23 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/complement" />
+            android:text="Complément"/>
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
-            android:layout_width="match_parent"
+            android:id="@+id/et"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:ems="10"
-            android:hint="@string/write_name_here"
-            android:inputType="textPersonName"
+            android:hint="Saisir nom ici"
             android:minHeight="48dp" />
-
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:src="@mipmap/ic_launcher" />
+        app:srcCompat="@mipmap/ic_launcher"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,21 +57,19 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btCancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="@string/cancel" />
+            android:text="Annuler" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btValidate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="@string/validate" />
+            android:text="Valider" />
     </LinearLayout>
-
-
 </LinearLayout>
