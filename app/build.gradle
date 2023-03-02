@@ -48,5 +48,8 @@ dependencies {
 
     //Librairie pour faire des requetes web
     implementation 'com.squareup.okhttp3:okhttp:+'
+    //Parsing JSON
     implementation 'com.google.code.gson:gson:2.3'
+    //Chargement d'image
+    implementation 'com.squareup.picasso:picasso:2.8'
 }
