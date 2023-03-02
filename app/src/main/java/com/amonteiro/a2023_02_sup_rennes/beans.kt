@@ -45,6 +45,8 @@ data class WindBean(var speed: Double)
 data class DescBean(var description: String, var icon:String)
 data class TempBean(var temp: Double, var temp_min:Double,var temp_max:Double)
 
+data class WeatherErrorBean(var message:String)
+
 
 /* -------------------------------- */
 // EXO

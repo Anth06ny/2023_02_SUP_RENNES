@@ -44,6 +44,12 @@ object RequestUtils {
             //use permet de fermer la réponse qu'il y ait ou non une exception
             //Analyse du code retour
             if (!it.isSuccessful) {
+                //On regarde s'il n'y a pas un JSON
+                val json = it.body.string()
+                if(json.isNotBlank() && json.contains("{") && json.contains("}")) {
+                    val error = gson.fromJson(json, WeatherErrorBean::class.java)
+                    throw Exception("Réponse du serveur incorrect : ${error.message}")
+                }
                 throw Exception("Réponse du serveur incorrect :${it.code}")
             }
             //Résultat de la requête
