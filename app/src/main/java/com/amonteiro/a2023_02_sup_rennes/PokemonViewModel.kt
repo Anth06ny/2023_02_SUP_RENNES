@@ -6,13 +6,13 @@ import androidx.lifecycle.ViewModel
 import com.squareup.picasso.Picasso
 import kotlin.concurrent.thread
 
-class WeatherViewModel : ViewModel() {
+class PokemonViewModel : ViewModel() {
     var errorMessage = MutableLiveData("")
-    var data = MutableLiveData<WeatherBean?>()
+    var data = MutableLiveData<PokemonBean?>()
     //thread en cours ou non -> pour la progressBar
     var runInProgress = MutableLiveData(false)
 
-    fun loadData(city: String){
+    fun loadData(){
         //déclanche l'observateur
         errorMessage.postValue("")
         data.postValue(null)
@@ -21,7 +21,7 @@ class WeatherViewModel : ViewModel() {
         thread {
             try {
                 //Requêtes
-                data.postValue(RequestUtils.loadWeather(city))
+                data.postValue(RequestUtils.loadRandomPokemon())
             }
             catch (e: Exception) {
                 //J'affiche le detail de l'erreur dans la console

@@ -1,15 +1,15 @@
 package com.amonteiro.a2023_02_sup_rennes
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import com.amonteiro.a2023_02_sup_rennes.databinding.ActivityMainBinding
 
 const val MENU_METEO = 1
+const val MENU_POKEMON = 2
+
 class MainActivity : AppCompatActivity() {
 
     //Instantiation
@@ -42,24 +42,27 @@ class MainActivity : AppCompatActivity() {
 
     //Callback création du menu
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menu.add(0,MENU_METEO,0,"Météo")
+        menu.add(0, MENU_METEO, 0, "Météo")
+        menu.add(0, MENU_POKEMON, 0, "Pokemon")
         return super.onCreateOptionsMenu(menu)
     }
 
     //Callback clic sur les menus
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if(item.itemId == MENU_METEO) {
+        if (item.itemId == MENU_METEO) {
             //Changement d'écran
             val intent = Intent(this, WeatherActivity::class.java)
+            startActivity(intent)
+        }
+        else if (item.itemId == MENU_POKEMON) {
+            //Changement d'écran
+            val intent = Intent(this, PokemonActivity::class.java)
             startActivity(intent)
         }
 
         return super.onOptionsItemSelected(item)
     }
-
-
-
 
 
 }

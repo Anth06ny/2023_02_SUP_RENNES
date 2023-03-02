@@ -6,7 +6,6 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.amonteiro.a2023_02_sup_rennes.databinding.ActivityWeatherBinding
 import com.squareup.picasso.Picasso
-import kotlin.concurrent.thread
 
 class WeatherActivity : AppCompatActivity() {
     //Instantiation
@@ -18,48 +17,49 @@ class WeatherActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        observe()
+
         binding.btLoad.setOnClickListener {
-            //Préparation de la requete graphiquement
-            binding.progressBar.isVisible = true
-
             val city = binding.etCityName.text.toString()
-            thread {
-                model.loadData(city)
+            model.loadData(city)
+        }
+    }
 
-                //Mise à jour graphique obligatoirement sur le thread principale
-                runOnUiThread {
-                    refreshScreen()
-                    binding.progressBar.isVisible = false
-                }
+    fun observe() {
+        //j'écoute la donnée de l'errorMessage
+        //Chaque postValue sur errorMessage va déclancher l'observateur
+        //Le fait également à l'abonnement
+        model.errorMessage.observe(this) {
+            if (it.isNotBlank()) {
+                binding.tvError.text = it
+                binding.tvError.isVisible = true
+            }
+            else {
+                binding.tvError.isVisible = false
             }
         }
-        //Arriver sur l'écran je mets à jour ems données au cas ou elles sont présentes
-        refreshScreen()
 
-    }
-
-    fun refreshScreen() {
-        //Affichage des données
-        binding.tv.text = model.data?.name ?: "-"
-        binding.tvWind.text = model.data?.wind?.speed?.toString() ?: "-"
-        binding.tvTemp.text = "${model.data?.main?.temp ?: "-"}°"
-        binding.tvMinMax.text = "(${model.data?.main?.temp_min ?: "-"}° / ${model.data?.main?.temp_max ?: "-"}°)"
-
-        if (!model.data?.weather.isNullOrEmpty()) {
-            binding.tvDesc.text = model.data?.weather?.get(0)?.description ?: "-"
-            Picasso.get().load("https://openweathermap.org/img/wn/${model.data?.weather?.get(0)?.icon}@4x.png")
-                .placeholder(R.drawable.baseline_whatshot_24)
-                .error(R.drawable.baseline_delete_forever_24)
-                .into(binding.ivTemp)
+        //observation du traitement
+        model.runInProgress.observe(this) {
+            binding.progressBar.isVisible = it
         }
 
-        //Affichage de l'erreur
-        if (model.errorMessage.isNotBlank()) {
-            binding.tvError.text = model.errorMessage
-            binding.tvError.isVisible = true
-        }
-        else {
-            binding.tvError.isVisible = false
+        //Observation des données
+        model.data.observe(this) {
+            //Affichage des données
+            binding.tv.text = it?.name ?: "-"
+            binding.tvWind.text = it?.wind?.speed?.toString() ?: "-"
+            binding.tvTemp.text = "${it?.main?.temp ?: "-"}°"
+            binding.tvMinMax.text = "(${it?.main?.temp_min ?: "-"}° / ${it?.main?.temp_max ?: "-"}°)"
+
+            if (!it?.weather.isNullOrEmpty()) {
+                binding.tvDesc.text = it?.weather?.get(0)?.description ?: "-"
+                Picasso.get().load("https://openweathermap.org/img/wn/${it?.weather?.get(0)?.icon}@4x.png")
+                    .placeholder(R.drawable.baseline_whatshot_24)
+                    .error(R.drawable.baseline_delete_forever_24)
+                    .into(binding.ivTemp)
+            }
         }
     }
+
 }
