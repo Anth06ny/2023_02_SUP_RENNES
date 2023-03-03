@@ -9,6 +9,7 @@ import com.amonteiro.a2023_02_sup_rennes.databinding.ActivityMainBinding
 
 const val MENU_METEO = 1
 const val MENU_POKEMON = 2
+const val MENU_RECYCLER_VIEW = 3
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menu.add(0, MENU_METEO, 0, "Météo")
         menu.add(0, MENU_POKEMON, 0, "Pokemon")
+        menu.add(0, MENU_RECYCLER_VIEW, 0, "RecyclerView")
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -58,6 +60,11 @@ class MainActivity : AppCompatActivity() {
         else if (item.itemId == MENU_POKEMON) {
             //Changement d'écran
             val intent = Intent(this, PokemonActivity::class.java)
+            startActivity(intent)
+        }
+        else if (item.itemId == MENU_RECYCLER_VIEW) {
+            //Changement d'écran
+            val intent = Intent(this, WeatherAroundActivity::class.java)
             startActivity(intent)
         }
 
